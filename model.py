@@ -1,5 +1,17 @@
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import pandas as pd
+import openai
+
+openai.api_key = "your-api-key"
+
+response = openai.ChatCompletion.create(
+    model="gpt-4o",  # This is the new GPT-4o model
+    messages=[
+        {"role": "system", "content": "You are a helpful assistant."},
+        {"role": "user", "content": "What's the weather like in Paris today?"}
+    ]
+)
+
 
 df = pd.read_json("hf://datasets/O1-OPEN/OpenO1-SFT/OpenO1-SFT.jsonl", lines=True)
 
